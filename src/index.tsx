@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
-import customTheme from "./theme";
 import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
+import customTheme from "./theme";
+import "../src/theme/styles.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
