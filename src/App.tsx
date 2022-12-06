@@ -3,6 +3,7 @@ import "./App.css";
 import { createUseStyles } from "react-jss";
 import AppContainer from "./components/AppContainer";
 import { Route, Routes } from "react-router-dom";
+import LandingPage from "./views/LandingPage";
 
 const useStyles = createUseStyles(() => ({
   root: {
@@ -17,7 +18,8 @@ function App() {
     <AppContainer>
       <div className={classes.root}>
         <Routes>
-          <Route path="/" element={null} />
+          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/notes" element={<NoteCard />} /> */}
         </Routes>
       </div>
     </AppContainer>
