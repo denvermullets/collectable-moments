@@ -1,13 +1,5 @@
 import React from "react";
-// Chakra imports
-import {
-  Flex,
-  FormLabel,
-  Input,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
-// Custom components
+import { Flex, FormLabel, Input, Text } from "@chakra-ui/react";
 
 interface InputFieldProps {
   id?: string;
@@ -15,7 +7,6 @@ interface InputFieldProps {
   extra?: JSX.Element;
   placeholder?: string;
   type?: string;
-  [x: string]: any;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -24,24 +15,15 @@ const InputField: React.FC<InputFieldProps> = ({
   extra,
   placeholder,
   type,
-  mb,
   ...rest
 }) => {
-  // const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  // const bgPrimary = useColorModeValue("transparent", "navy.800");
-  // const borderPrimary = useColorModeValue(
-  //   "secondaryGray.100",
-  //   "whiteAlpha.100"
-  // );
-
   return (
-    <Flex direction="column" mb={mb ? mb : "30px"}>
+    <Flex direction="column" mb={"30px"}>
       <FormLabel
         display="flex"
         ms="10px"
         htmlFor={id}
         fontSize="sm"
-        // color={textColorPrimary}
         fontWeight="bold"
         _hover={{ cursor: "pointer" }}
       >
@@ -56,9 +38,7 @@ const InputField: React.FC<InputFieldProps> = ({
         id={id}
         fontWeight="500"
         variant="main"
-        // bg={bgPrimary}
         border="1px solid "
-        // borderColor={borderPrimary}
         borderRadius="16px"
         placeholder={placeholder}
         _placeholder={{ fontWeight: "400", color: "secondaryGray.600" }}
