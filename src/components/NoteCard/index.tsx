@@ -3,23 +3,24 @@ import {
   Card,
   Flex,
   Grid,
-  Spacer,
+  IconButton,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { Moment } from "../../models/Moment";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 type NoteCardProps = {
   moment: Moment;
+  deleteMoment: (moment: Moment) => void;
 };
 
-const NoteCard: React.FC<NoteCardProps> = ({ moment }) => {
+const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
   const textColor = useColorModeValue("navy.700", "white");
 
   return (
     <Grid
-      // pt={{ base: "130px", md: "80px", xl: "80px" }}
       gridTemplateColumns={{ md: "2.15fr 1fr", xl: "2.95fr 1fr" }}
       display={{ base: "block", lg: "grid" }}
       marginBottom={5}
@@ -46,7 +47,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ moment }) => {
           }}
         >
           <Flex direction={{ base: "column", md: "column", xl: "row" }}>
-            <Box flexDirection="column" w={{ xl: "68%" }} mb="25px">
+            <Box flexDirection="column" w={{ xl: "100%" }}>
               <Text
                 color={textColor}
                 fontSize={{
@@ -71,26 +72,31 @@ const NoteCard: React.FC<NoteCardProps> = ({ moment }) => {
               >
                 {moment.description}
               </Text>
-              <Spacer />
-            </Box>
-            <Spacer />
-            <Box>
-              <Text
-                ms="auto"
-                mt="10px"
-                color="secondaryGray.600"
-                fontSize={{
-                  base: "md",
-                }}
-                fontWeight="500"
+              <Grid
+                marginTop={4}
+                templateColumns="1fr 1fr"
+                alignItems="stretch"
+                padding={2}
               >
-                {moment.event_date.toString()}
-              </Text>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="flex-start"
+                >
+                  <Text>{moment.event_date.toString()}</Text>
+                </Box>
+                <Box display="flex" justifyContent="flex-end">
+                  <IconButton
+                    icon={<FaRegTrashAlt />}
+                    aria-label="Delete Moment"
+                    variant="outline"
+                    onClick={() => deleteMoment(moment)}
+                  />
+                </Box>
+              </Grid>
             </Box>
           </Flex>
         </Card>
-
-        {/* <VSeparator mx="30px" h="100%" /> */}
       </Flex>
     </Grid>
   );
