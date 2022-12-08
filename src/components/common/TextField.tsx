@@ -8,11 +8,9 @@ interface TextFieldProps {
   placeholder?: string;
   momentChange: (memory: string) => void;
   momentValue: string;
-  [x: string]: any;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
-  mb,
   id,
   label,
   extra,
@@ -22,7 +20,7 @@ const TextField: React.FC<TextFieldProps> = ({
   ...rest
 }) => {
   return (
-    <Flex direction="column" mb={mb ? mb : "30px"}>
+    <Flex direction="column" mb={"30px"}>
       <FormLabel
         display="flex"
         ms="10px"
