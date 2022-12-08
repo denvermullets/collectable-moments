@@ -41,14 +41,14 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
       );
 
       if (!createMoment) {
-        console.log("something went wrong when creating a Moment");
-        throw Error("Unable to create moment");
+        console.error("Unable to create moment");
       }
 
       setMoment("");
+      // we should just append this to the existing array w/o pulling fresh data
       setRefreshTable(true);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

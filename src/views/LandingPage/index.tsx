@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MomentCollector from "../../components/MomentCollector";
 import NoteCard from "../../components/NoteCard";
+import envConfig from "../../envConfig";
 import { Moment } from "../../models/Moment";
 
 const LandingPage: React.FC = () => {
@@ -12,7 +13,7 @@ const LandingPage: React.FC = () => {
   useEffect(() => {
     const loadMoments = async () => {
       try {
-        const moments = await axios("http://localhost:3001/api/v1/moments");
+        const moments = await axios(`${envConfig.API_URL}/v1/moments`);
 
         if (!moments) {
           return;
@@ -20,7 +21,7 @@ const LandingPage: React.FC = () => {
 
         setCollectedMoments(moments.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -29,6 +30,26 @@ const LandingPage: React.FC = () => {
       setRefreshTable(false);
     }
   }, [refreshTable]);
+
+  const deleteMoment = async (moment: Moment) => {
+    try {
+      const delMoment = await axios.delete(
+        `${envConfig.API_URL}/v1/moments/${moment.id}`
+      );
+
+      if (!delMoment) {
+        console.log("something went wrong");
+        return;
+      }
+
+      const removeMoment = collectedMoments.filter(
+        (oldMoment: Moment) => oldMoment.id !== moment.id
+      );
+      setCollectedMoments(removeMoment);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Box>
@@ -67,7 +88,6 @@ const LandingPage: React.FC = () => {
             navbar goes here
           </Box>
         </Portal>
-        {/* {getRoute() ? ( */}
         <Box
           mx="auto"
           p={{ base: "20px", md: "30px" }}
@@ -75,7 +95,6 @@ const LandingPage: React.FC = () => {
           minH="100vh"
           pt="50px"
         >
-          {/* <Box pt={{ base: "130px", md: "80px", xl: "80px" }}> */}
           <Box pt={{ base: 5 }}>
             <SimpleGrid
               mb="20px"
@@ -87,16 +106,14 @@ const LandingPage: React.FC = () => {
           </Box>
           {collectedMoments.length
             ? collectedMoments.map((moment: Moment) => (
-                <NoteCard key={moment.id} moment={moment} />
+                <NoteCard
+                  key={moment.id}
+                  moment={moment}
+                  deleteMoment={deleteMoment}
+                />
               ))
             : null}
-
-          {/* <Switch>
-                {getRoutes(routes)}
-                <Redirect from="/" to="/admin/dashboards/default" />
-              </Switch> */}
         </Box>
-        {/* ) : null} */}
         <Box>{/* <Footer /> */}</Box>
       </Box>
     </Box>
