@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import MomentCollector from "../../components/MomentCollector";
 import NoteCard from "../../components/NoteCard";
+import Sidebar from "../../components/SideBar";
 import envConfig from "../../envConfig";
 import { Moment } from "../../models/Moment";
 
@@ -59,8 +60,7 @@ const LandingPage: React.FC = () => {
           setToggleSidebar,
         }}
       > */}
-      sidebar
-      {/* <Sidebar routes={routes} display="none" {...rest} /> */}
+      <Sidebar />
       <Box
         float="right"
         minHeight="100vh"
