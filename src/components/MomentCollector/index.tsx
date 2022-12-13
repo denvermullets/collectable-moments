@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  Flex,
-  FormControl,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import React, { useContext, useState } from "react";
+import { Button, Card, Flex, FormControl, Text } from "@chakra-ui/react";
 import TextField from "../common/TextField";
-import axios from "axios";
+import axiosMoment from "../../util/axiosConfig";
+import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 type MomentCollectorProps = {
   setRefreshTable: (refresh: boolean) => void;
@@ -18,7 +12,7 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
   setRefreshTable,
 }) => {
   const [moment, setMoment] = useState<string>("");
-  const textColorPrimary = useColorModeValue("purpleMoment.800", "white");
+  const { currentUser } = useContext<CurrentUserContext>(UserContext);
 
   const generateDate = () => {
     const date = new Date();
@@ -31,8 +25,8 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
 
   const handleSubmit = async () => {
     try {
-      const createMoment = await axios.post(
-        `http://localhost:3001/api/v1/moments`,
+      const createMoment = await axiosMoment(currentUser?.token).post(
+        `/v1/moments`,
         {
           // title: title,
           description: moment,
@@ -56,7 +50,7 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
     <FormControl>
       <Card padding={4} background="white" rounded={20}>
         <Flex direction="column">
-          <Text fontSize="xl" color={textColorPrimary} fontWeight="bold">
+          <Text fontSize="xl" fontWeight="bold">
             Moment Collector
           </Text>
           {/* <Text fontSize="md" color={textColorSecondary}>

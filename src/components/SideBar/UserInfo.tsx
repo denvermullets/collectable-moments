@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
 import avatar from "../../assets/img/avatar.png";
+import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
 const UserInfo: React.FC = () => {
+  const { currentUser } = useContext<CurrentUserContext>(UserContext);
   return (
     <Flex
       mt="75px"
@@ -14,10 +16,10 @@ const UserInfo: React.FC = () => {
       <Avatar h="48px" w="48px" src={avatar} me="20px" />
       <Box>
         <Text fontSize="md" fontWeight="700">
-          @denvermullets
+          {currentUser ? `@${currentUser.username}` : null}
         </Text>
-        <Text color="secondaryGray.600" fontSize="sm" fontWeight="400">
-          Jason Smith
+        <Text fontSize="sm">
+          {currentUser ? `@${currentUser.username}` : null}
         </Text>
       </Box>
     </Flex>

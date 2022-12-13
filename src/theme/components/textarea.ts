@@ -20,7 +20,6 @@ export const textareaStyles = {
 
       _focus: {
         borderColor: mode("pinkMoment.400", "whiteAlpha.100"),
-        //   bg: "red",
       },
     }),
   },

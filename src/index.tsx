@@ -7,19 +7,22 @@ import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 import customTheme from "./theme";
 import "../src/theme/styles.css";
+import { CurrentUserProvider } from "./providers/UserContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <CookiesProvider>
-      <ChakraProvider theme={customTheme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ChakraProvider>
-    </CookiesProvider>
+    <CurrentUserProvider>
+      <CookiesProvider>
+        <ChakraProvider theme={customTheme}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ChakraProvider>
+      </CookiesProvider>
+    </CurrentUserProvider>
   </React.StrictMode>
 );
 

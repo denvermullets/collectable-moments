@@ -17,8 +17,6 @@ type NoteCardProps = {
 };
 
 const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
-  const textColor = useColorModeValue("navy.700", "white");
-
   return (
     <Grid
       gridTemplateColumns={{ md: "2.15fr 1fr", xl: "2.95fr 1fr" }}
@@ -49,7 +47,6 @@ const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
           <Flex direction={{ base: "column", md: "column", xl: "row" }}>
             <Box flexDirection="column" w={{ xl: "100%" }}>
               <Text
-                color={textColor}
                 fontSize={{
                   base: "xl",
                   md: "xl",
@@ -62,7 +59,6 @@ const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
                 Title: {moment.title}
               </Text>
               <Text
-                color="secondaryGray.600"
                 fontSize={{
                   base: "md",
                 }}

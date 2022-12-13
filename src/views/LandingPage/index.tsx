@@ -1,20 +1,21 @@
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Portal, SimpleGrid } from "@chakra-ui/react";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import MomentCollector from "../../components/MomentCollector";
 import NoteCard from "../../components/NoteCard";
 import Sidebar from "../../components/SideBar";
-import envConfig from "../../envConfig";
 import { Moment } from "../../models/Moment";
+import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import axiosMoment from "../../util/axiosConfig";
 
 const LandingPage: React.FC = () => {
   const [collectedMoments, setCollectedMoments] = useState<Moment[]>([]);
   const [refreshTable, setRefreshTable] = useState<boolean>(true);
+  const { currentUser } = useContext<CurrentUserContext>(UserContext);
 
   useEffect(() => {
     const loadMoments = async () => {
       try {
-        const moments = await axios(`${envConfig.API_URL}/v1/moments`);
+        const moments = await axiosMoment(currentUser?.token)("/v1/moments");
 
         if (!moments) {
           return;
@@ -26,16 +27,16 @@ const LandingPage: React.FC = () => {
       }
     };
 
-    if (refreshTable) {
+    if (refreshTable && currentUser) {
       loadMoments();
       setRefreshTable(false);
     }
-  }, [refreshTable]);
+  }, [refreshTable, currentUser]);
 
   const deleteMoment = async (moment: Moment) => {
     try {
-      const delMoment = await axios.delete(
-        `${envConfig.API_URL}/v1/moments/${moment.id}`
+      const delMoment = await axiosMoment(currentUser?.token).delete(
+        `/v1/moments/${moment.id}`
       );
 
       if (!delMoment) {
