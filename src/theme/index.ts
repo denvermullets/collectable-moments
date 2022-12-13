@@ -3,6 +3,9 @@ import { textareaStyles } from "./components/textarea";
 import { buttonStyles } from "./components/button";
 
 import { globalStyles } from "./styles";
+import { momentText } from "./components/text";
+import { momentLabel } from "./components/formLabel";
+import { momentHeading } from "./components/heading";
 
 const customTheme = extendTheme({
   fonts: {
@@ -15,6 +18,15 @@ const customTheme = extendTheme({
     },
     Textarea: {
       ...textareaStyles,
+    },
+    Text: {
+      ...momentText,
+    },
+    FormLabel: {
+      ...momentLabel,
+    },
+    Heading: {
+      ...momentHeading,
     },
   },
   ...globalStyles,

@@ -59,15 +59,11 @@ export const globalStyles = {
       body: {
         overflowX: "hidden",
         bg: mode("pinkMoment.50", "navy.900")(props),
-        // fontFamily: "DM Sans",
         letterSpacing: "-0.5px",
       },
       input: {
         color: "gray.700",
       },
-      // html: {
-      //   fontFamily: "DM Sans",
-      // },
     }),
   },
 };
