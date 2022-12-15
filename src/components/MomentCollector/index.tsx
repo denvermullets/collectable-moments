@@ -3,6 +3,7 @@ import { Button, Card, Flex, FormControl, Text } from "@chakra-ui/react";
 import TextField from "../common/TextField";
 import axiosMoment from "../../util/axiosConfig";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { generateDate } from "../../util/helpers";
 
 type MomentCollectorProps = {
   setRefreshTable: (refresh: boolean) => void;
@@ -13,15 +14,6 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
 }) => {
   const [moment, setMoment] = useState<string>("");
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
-
-  const generateDate = () => {
-    const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    return `${day}-${month}-${year}`;
-  };
 
   const handleSubmit = async () => {
     try {

@@ -61,7 +61,7 @@ const LandingPage: React.FC = () => {
           setToggleSidebar,
         }}
       > */}
-      <Sidebar />
+      <Sidebar moments={collectedMoments} />
       <Box
         float="right"
         minHeight="100vh"
@@ -99,21 +99,23 @@ const LandingPage: React.FC = () => {
           <Box pt={{ base: 5 }}>
             <SimpleGrid
               mb="20px"
-              columns={{ sm: 1, lg: 2 }}
+              columns={{ sm: 1, lg: 1 }}
               spacing={{ base: "20px", xl: "20px" }}
             >
               <MomentCollector setRefreshTable={setRefreshTable} />
             </SimpleGrid>
           </Box>
-          {collectedMoments.length
-            ? collectedMoments.map((moment: Moment) => (
-                <NoteCard
-                  key={moment.id}
-                  moment={moment}
-                  deleteMoment={deleteMoment}
-                />
-              ))
-            : null}
+          <Box>
+            {collectedMoments.length
+              ? collectedMoments.map((moment: Moment) => (
+                  <NoteCard
+                    key={moment.id}
+                    moment={moment}
+                    deleteMoment={deleteMoment}
+                  />
+                ))
+              : null}
+          </Box>
         </Box>
         <Box>{/* <Footer /> */}</Box>
       </Box>
