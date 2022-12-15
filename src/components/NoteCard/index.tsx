@@ -18,11 +18,7 @@ type NoteCardProps = {
 
 const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
   return (
-    <Grid
-      gridTemplateColumns={{ md: "2.15fr 1fr", xl: "2.95fr 1fr" }}
-      display={{ base: "block", lg: "grid" }}
-      marginBottom={5}
-    >
+    <Grid display={{ base: "block", lg: "grid" }} marginBottom={5}>
       <Flex display={{ base: "block", lg: "flex" }}>
         <Card
           p="20px"

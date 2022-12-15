@@ -1,8 +1,14 @@
 import React from "react";
 import { Box, Flex, useColorModeValue, Text, Stack } from "@chakra-ui/react";
 import UserInfo from "./UserInfo";
+import { Moment } from "../../models/Moment";
+import CalendarMonth from "../CalendarMonth";
 
-const Sidebar = () => {
+type SidebarProps = {
+  moments: Moment[];
+};
+
+const Sidebar: React.FC<SidebarProps> = ({ moments }) => {
   const variantChange = "0.2s linear";
   const shadow = useColorModeValue(
     "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
@@ -36,15 +42,8 @@ const Sidebar = () => {
               <Text>links</Text>
             </Box>
           </Stack>
-
-          <Box
-            ps="20px"
-            pe={{ md: "16px", "2xl": "0px" }}
-            mt="60px"
-            borderRadius="30px"
-          >
-            content?
-            {/* <SidebarCard /> */}
+          <Box mt="60px" borderRadius="30px">
+            <CalendarMonth moments={moments} />
           </Box>
           <UserInfo />
         </Flex>
