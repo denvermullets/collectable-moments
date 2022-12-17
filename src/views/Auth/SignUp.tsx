@@ -110,7 +110,6 @@ const SignUp: React.FC = () => {
             name="email"
             value={formData.email}
             isRequired={true}
-            variant="auth"
             fontSize="sm"
             type="email"
             placeholder="email@gmail.com"
@@ -126,7 +125,6 @@ const SignUp: React.FC = () => {
             id="username"
             value={formData.username}
             isRequired={true}
-            variant="auth"
             fontSize="sm"
             type="text"
             placeholder="UserName"
@@ -143,7 +141,6 @@ const SignUp: React.FC = () => {
               id="password"
               value={formData.password}
               isRequired={true}
-              variant="auth"
               fontSize="sm"
               ms={{ base: "0px", md: "4px" }}
               placeholder="Min. 8 characters"

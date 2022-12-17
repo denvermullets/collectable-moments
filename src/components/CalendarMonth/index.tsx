@@ -29,8 +29,8 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({ moments }) => {
       maxW="max-content"
       p="20px 15px"
       h="max-content"
-      background={"white"}
       rounded={20}
+      background="unset"
     >
       <Calendar
         // onChange={onChange}

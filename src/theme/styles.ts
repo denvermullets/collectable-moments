@@ -53,12 +53,28 @@ export const globalStyles = {
       800: "#564341",
       900: "#3e302f",
     },
+    darkMode: {
+      50: "#f7f7f9",
+      100: "#dfe0e6",
+      200: "#c3c5d1",
+      300: "#a1a5b8",
+      400: "#8f93aa",
+      // color 1
+      500: "#6B728E",
+      // color 2
+      600: "#50577A",
+      // color 3
+      700: "#474E68",
+      // color 4
+      800: "#1c1838",
+      900: "#161228",
+    },
   },
   styles: {
     global: (props) => ({
       body: {
         overflowX: "hidden",
-        bg: mode("pinkMoment.50", "navy.900")(props),
+        bg: mode("pinkMoment.50", "darkMode.900")(props),
         letterSpacing: "-0.5px",
       },
       input: {

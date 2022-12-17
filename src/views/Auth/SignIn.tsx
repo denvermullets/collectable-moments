@@ -97,7 +97,6 @@ const SignIn: React.FC = () => {
           </FormLabel>
           <Input
             isRequired={true}
-            variant="auth"
             fontSize="sm"
             type="email"
             placeholder="email@gmail.com"
@@ -120,7 +119,6 @@ const SignIn: React.FC = () => {
               mb="24px"
               size="lg"
               type={show ? "text" : "password"}
-              variant="auth"
               onChange={handleFormChange}
               value={formData.password}
               name="password"
@@ -136,16 +134,11 @@ const SignIn: React.FC = () => {
           </InputGroup>
           <Flex justifyContent="space-between" align="center" mb="24px">
             <FormControl display="flex" alignItems="center">
-              <Checkbox
-                id="remember-login"
-                // colorScheme="brandScheme"
-                me="10px"
-              />
+              <Checkbox id="remember-login" me="10px" />
               <FormLabel
                 htmlFor="remember-login"
                 mb="0"
                 fontWeight="normal"
-                // color={textColor}
                 fontSize="sm"
               >
                 Keep me logged in

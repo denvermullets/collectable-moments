@@ -1,11 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-export interface PropsType {
-  children: React.ReactNode;
-  currentUser: CurrentUserType;
-}
-
 export interface CurrentUserType {
   id: string;
   email: string;
