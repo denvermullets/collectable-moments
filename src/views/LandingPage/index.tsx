@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Portal, SimpleGrid } from "@chakra-ui/react";
+import { Box, Portal } from "@chakra-ui/react";
 import MomentCollector from "../../components/MomentCollector";
 import NoteCard from "../../components/NoteCard";
 import Sidebar from "../../components/SideBar";
 import { Moment } from "../../models/Moment";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 import axiosMoment from "../../util/axiosConfig";
+import NavBar from "../../components/NavBar";
 
 const LandingPage: React.FC = () => {
   const [collectedMoments, setCollectedMoments] = useState<Moment[]>([]);
@@ -63,6 +64,7 @@ const LandingPage: React.FC = () => {
       > */}
       <Sidebar moments={collectedMoments} />
       <Box
+        pt={{ base: "130px", md: "80px", xl: "80px" }}
         float="right"
         minHeight="100vh"
         height="100%"
@@ -77,35 +79,12 @@ const LandingPage: React.FC = () => {
         transitionTimingFunction="linear, linear, ease"
       >
         <Portal>
-          <Box>
-            {/* <Navbar
-                onOpen={onOpen}
-                logoText={"Horizon UI Dashboard PRO"}
-                brandText={getActiveRoute(routes)}
-                secondary={getActiveNavbar(routes)}
-                fixed={fixed}
-                {...rest}
-              /> */}
-            navbar goes here
-          </Box>
+          <NavBar />
         </Portal>
-        <Box
-          mx="auto"
-          p={{ base: "20px", md: "30px" }}
-          pe="20px"
-          minH="100vh"
-          pt="50px"
-        >
-          <Box pt={{ base: 5 }}>
-            <SimpleGrid
-              mb="20px"
-              columns={{ sm: 1, lg: 1 }}
-              spacing={{ base: "20px", xl: "20px" }}
-            >
-              <MomentCollector setRefreshTable={setRefreshTable} />
-            </SimpleGrid>
-          </Box>
+        <Box p={{ base: "20px", md: "30px" }} minH="100vh">
           <Box>
+            <MomentCollector setRefreshTable={setRefreshTable} />
+
             {collectedMoments.length
               ? collectedMoments.map((moment: Moment) => (
                   <NoteCard

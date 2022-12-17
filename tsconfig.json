@@ -12,6 +12,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "removeComments": true,
+    "lib": ["dom"],
     "skipLibCheck": true
   },
   "include": ["./src/**/*"],

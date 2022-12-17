@@ -14,7 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ moments }) => {
     "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
     "unset"
   );
-  const sidebarBg = useColorModeValue("white", "navy.800");
+  const sidebarBg = useColorModeValue("white", "darkMode.800");
   const sidebarRadius = "30px";
 
   return (

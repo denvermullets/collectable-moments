@@ -23,7 +23,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
         <Card
           p="20px"
           h="max-content"
-          minH={{ md: "450px", xl: "auto" }}
+          minH={{ base: "auto" }}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -32,13 +32,13 @@ const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
             borderRadius: "20px",
             minWidth: "0px",
             wordWrap: "break-word",
-            background: useColorModeValue("#ffffff", "navy.800"),
             boxShadow: useColorModeValue(
               "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
               "unset"
             ),
             backgroundClip: "border-box",
           }}
+          background={useColorModeValue("#ffffff", "darkMode.800")}
         >
           <Flex direction={{ base: "column", md: "column", xl: "row" }}>
             <Box flexDirection="column" w={{ xl: "100%" }}>

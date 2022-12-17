@@ -1,5 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Button, Card, Flex, FormControl, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Card,
+  FormControl,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import TextField from "../common/TextField";
 import axiosMoment from "../../util/axiosConfig";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
@@ -40,26 +46,24 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
 
   return (
     <FormControl>
-      <Card padding={4} background="white" rounded={20}>
-        <Flex direction="column">
-          <Text fontSize="xl" fontWeight="bold">
-            Moment Collector
-          </Text>
-          {/* <Text fontSize="md" color={textColorSecondary}>
-            Save your favorite memory from today!
-          </Text> */}
-        </Flex>
+      <Card
+        padding={4}
+        background={useColorModeValue("white", "darkMode.800")}
+        rounded={20}
+        marginBottom={4}
+      >
+        <Text fontSize="xl" fontWeight="bold">
+          Moment Collector
+        </Text>
         <TextField
           id="moment"
-          // label="What was your favorite memory from today?"
-          // h="100px"
           placeholder="What was your favorite memory from today?"
           momentChange={setMoment}
           momentValue={moment}
         />
         <Button
           variant="brand"
-          minW="183px"
+          minW="180px"
           fontSize="sm"
           fontWeight="500"
           ms="auto"
