@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Portal, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Portal } from "@chakra-ui/react";
 import MomentCollector from "../../components/MomentCollector";
 import NoteCard from "../../components/NoteCard";
 import Sidebar from "../../components/SideBar";

@@ -4,8 +4,6 @@ import {
   Button,
   Flex,
   Icon,
-  Image,
-  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -22,7 +20,6 @@ import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 const ProfileInfo = (props: { secondary: boolean }) => {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
-  // Chakra Color Mode
   const navbarIcon = useColorModeValue("gray.400", "white");
   const menuBg = useColorModeValue("white", "navy.800");
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -35,7 +32,6 @@ const ProfileInfo = (props: { secondary: boolean }) => {
     "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
-  const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
 
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
 
@@ -140,7 +136,6 @@ const ProfileInfo = (props: { secondary: boolean }) => {
               mb="10px"
             >
               blah
-              {/* <ItemContent info="Horizon UI Dashboard PRO" /> */}
             </MenuItem>
             <MenuItem
               _hover={{ bg: "none" }}
@@ -150,7 +145,6 @@ const ProfileInfo = (props: { secondary: boolean }) => {
               mb="10px"
             >
               more info
-              {/* <ItemContent info="Horizon Design System Free" /> */}
             </MenuItem>
           </Flex>
         </MenuList>
