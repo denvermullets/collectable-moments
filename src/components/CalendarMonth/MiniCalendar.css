@@ -48,6 +48,7 @@ abbr[title] {
 }
 
 .react-calendar__tile {
+  pointer-events: none;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -64,11 +65,13 @@ abbr[title] {
 }
 .react-calendar__tile--now {
   background: #937dc2;
+  /* background: none; */
   border-radius: 10px;
   color: white;
 }
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
+  background-color: #f4f7fe;
   border-radius: 10px;
 }
 .react-calendar__month-view__days__day--neighboringMonth {
@@ -104,7 +107,7 @@ abbr[title] {
   color: white;
 }
 
-/* DARK MODE - not adjusted yet*/
+/* DARK MODE */
 
 body.chakra-ui-dark .react-calendar {
   border-radius: 30px;

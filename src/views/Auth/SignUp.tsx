@@ -106,6 +106,7 @@ const SignUp: React.FC = () => {
             Email*
           </FormLabel>
           <Input
+            variant="authInput"
             id="email"
             name="email"
             value={formData.email}
@@ -121,6 +122,7 @@ const SignUp: React.FC = () => {
             Username*
           </FormLabel>
           <Input
+            variant="authInput"
             name="username"
             id="username"
             value={formData.username}
@@ -137,6 +139,7 @@ const SignUp: React.FC = () => {
           </FormLabel>
           <InputGroup size="md">
             <Input
+              variant="authInput"
               name="password"
               id="password"
               value={formData.password}

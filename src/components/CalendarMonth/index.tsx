@@ -35,6 +35,9 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({ moments }) => {
       <Calendar
         // onChange={onChange}
         selectRange={false}
+        allowPartialRange={false}
+        goToRangeStartOnSelect={false}
+        // tileDisabled={() => true}
         view={"month"}
         tileClassName={tileClassName}
         prevLabel={<Icon as={MdChevronLeft} w="24px" h="24px" mt="4px" />}
