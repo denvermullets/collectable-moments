@@ -96,6 +96,7 @@ const SignIn: React.FC = () => {
             Email*
           </FormLabel>
           <Input
+            variant="authInput"
             isRequired={true}
             fontSize="sm"
             type="email"
@@ -114,6 +115,7 @@ const SignIn: React.FC = () => {
           <InputGroup size="md">
             <Input
               isRequired={true}
+              variant="authInput"
               fontSize="sm"
               placeholder="Min. 8 characters"
               mb="24px"
