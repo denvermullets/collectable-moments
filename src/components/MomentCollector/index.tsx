@@ -51,6 +51,10 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
         background={useColorModeValue("white", "darkMode.800")}
         rounded={20}
         marginBottom={4}
+        boxShadow={useColorModeValue(
+          "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
+          "unset"
+        )}
       >
         <Text fontSize="xl" fontWeight="bold">
           Moment Collector

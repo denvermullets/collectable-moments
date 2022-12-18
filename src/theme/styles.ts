@@ -66,6 +66,7 @@ export const globalStyles = {
       // color 3
       700: "#474E68",
       // color 4
+      750: "#313648",
       800: "#1c1838",
       900: "#161228",
     },

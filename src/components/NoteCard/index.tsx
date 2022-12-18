@@ -1,12 +1,4 @@
-import {
-  Box,
-  Card,
-  Flex,
-  Grid,
-  IconButton,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, IconButton, Text } from "@chakra-ui/react";
 import React from "react";
 import { Moment } from "../../models/Moment";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -18,77 +10,63 @@ type NoteCardProps = {
 
 const NoteCard: React.FC<NoteCardProps> = ({ moment, deleteMoment }) => {
   return (
-    <Grid display={{ base: "block", lg: "grid" }} marginBottom={5}>
-      <Flex display={{ base: "block", lg: "flex" }}>
-        <Card
-          p="20px"
-          h="max-content"
-          minH={{ base: "auto" }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            position: "relative",
-            borderRadius: "20px",
-            minWidth: "0px",
-            wordWrap: "break-word",
-            boxShadow: useColorModeValue(
-              "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
-              "unset"
-            ),
-            backgroundClip: "border-box",
-          }}
-          background={useColorModeValue("#ffffff", "darkMode.800")}
+    <Grid display={{ base: "block", lg: "grid" }} width="100%">
+      <Flex display={{ base: "block", lg: "flex" }} width="100%">
+        <Flex
+          direction={{ base: "column", md: "column", xl: "row" }}
+          width="100%"
         >
-          <Flex direction={{ base: "column", md: "column", xl: "row" }}>
-            <Box flexDirection="column" w={{ xl: "100%" }}>
-              <Text
-                fontSize={{
-                  base: "xl",
-                  md: "xl",
-                  xl: "xl",
-                  "2xl": "28px",
-                }}
-                mb="10px"
-                fontWeight="700"
+          <Box flexDirection="column" width="100%">
+            <Text
+              fontSize={{
+                base: "xl",
+                md: "xl",
+                xl: "xl",
+                "2xl": "28px",
+              }}
+              mb="10px"
+              fontWeight="700"
+            >
+              {moment?.title && moment.title}
+            </Text>
+            <Text
+              fontSize={{
+                base: "md",
+              }}
+              fontWeight="400"
+              me="14px"
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {moment?.description && moment.description}
+            </Text>
+            <Grid
+              marginTop={4}
+              templateColumns="1fr 1fr"
+              alignItems="stretch"
+              padding={2}
+            >
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="flex-start"
               >
-                Title: {moment.title}
-              </Text>
-              <Text
-                fontSize={{
-                  base: "md",
-                }}
-                fontWeight="400"
-                me="14px"
-                style={{ whiteSpace: "pre-line" }}
-              >
-                {moment.description}
-              </Text>
-              <Grid
-                marginTop={4}
-                templateColumns="1fr 1fr"
-                alignItems="stretch"
-                padding={2}
-              >
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="flex-start"
-                >
-                  <Text>{moment.event_date.toString()}</Text>
-                </Box>
-                <Box display="flex" justifyContent="flex-end">
+                <Text>
+                  {moment?.event_date && moment.event_date.toString()}
+                </Text>
+              </Box>
+              <Box display="flex" justifyContent="flex-end">
+                {moment && (
                   <IconButton
                     icon={<FaRegTrashAlt />}
                     aria-label="Delete Moment"
                     variant="outline"
                     onClick={() => deleteMoment(moment)}
                   />
-                </Box>
-              </Grid>
-            </Box>
-          </Flex>
-        </Card>
+                )}
+              </Box>
+            </Grid>
+          </Box>
+        </Flex>
       </Flex>
     </Grid>
   );
