@@ -1,11 +1,11 @@
 import { mode, StyleConfig, StyleFunctionProps } from "@chakra-ui/theme-tools";
 
 export const inputStyles: StyleConfig = {
-  baseStyle: (props: StyleFunctionProps) => ({
+  baseStyle: {
     field: {
       border: "1px solid",
     },
-  }),
+  },
 
   variants: {
     authInput: (props: StyleFunctionProps) => ({
