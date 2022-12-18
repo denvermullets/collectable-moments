@@ -7,6 +7,7 @@ import { momentText } from "./components/text";
 import { momentLabel } from "./components/formLabel";
 import { momentHeading } from "./components/heading";
 import { inputStyles } from "./components/input";
+import { cardStyles } from "./components/card";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -36,6 +37,9 @@ const customTheme = extendTheme({
     },
     Heading: {
       ...momentHeading,
+    },
+    Card: {
+      ...cardStyles,
     },
   },
   ...globalStyles,

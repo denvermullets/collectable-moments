@@ -1,5 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Portal } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  Grid,
+  Portal,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import MomentCollector from "../../components/MomentCollector";
 import NoteCard from "../../components/NoteCard";
 import Sidebar from "../../components/SideBar";
@@ -7,11 +14,15 @@ import { Moment } from "../../models/Moment";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 import axiosMoment from "../../util/axiosConfig";
 import NavBar from "../../components/NavBar";
+import MomentNote from "../../components/MomentNote";
+import dayjs from "dayjs";
 
 const LandingPage: React.FC = () => {
   const [collectedMoments, setCollectedMoments] = useState<Moment[]>([]);
   const [refreshTable, setRefreshTable] = useState<boolean>(true);
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
+
+  const [selectedMoment, setSelectedMoment] = useState<Moment>(null);
 
   useEffect(() => {
     const loadMoments = async () => {
@@ -85,15 +96,50 @@ const LandingPage: React.FC = () => {
           <Box>
             <MomentCollector setRefreshTable={setRefreshTable} />
 
-            {collectedMoments.length
-              ? collectedMoments.map((moment: Moment) => (
-                  <NoteCard
-                    key={moment.id}
-                    moment={moment}
-                    deleteMoment={deleteMoment}
-                  />
-                ))
-              : null}
+            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+              <Card
+                background={useColorModeValue("white", "darkMode.800")}
+                rounded={20}
+                padding={4}
+                boxShadow={useColorModeValue(
+                  "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
+                  "unset"
+                )}
+              >
+                <Text fontSize="2xl" fontWeight="700">
+                  Timeline
+                </Text>
+                <Text fontSize="md" fontWeight="500" mb="30px">
+                  All of your moments:
+                </Text>
+
+                {collectedMoments.length
+                  ? collectedMoments.map((moment: Moment) => (
+                      <MomentNote
+                        key={moment.id}
+                        moment={moment}
+                        day={dayjs(moment.event_date).format("ddd")}
+                        dateNum={dayjs(moment.event_date).date()}
+                        fullDate={dayjs(moment.event_date).format(
+                          "dddd, MMMM D, YYYY"
+                        )}
+                        setSelectedMoment={setSelectedMoment}
+                      />
+                    ))
+                  : null}
+              </Card>
+              <Card
+                background={useColorModeValue("white", "darkMode.800")}
+                rounded={20}
+                padding={4}
+                boxShadow={useColorModeValue(
+                  "14px 17px 40px 4px rgba(112, 144, 176, 0.08)",
+                  "unset"
+                )}
+              >
+                <NoteCard moment={selectedMoment} deleteMoment={deleteMoment} />
+              </Card>
+            </Grid>
           </Box>
         </Box>
         <Box>{/* <Footer /> */}</Box>
