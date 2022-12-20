@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/denvermullets/collectable-moments/compare/v1.0.1...v1.0.2) (2022-12-20)
+
+
+### Bug Fixes
+
+* **netlify:** remove space ([fe68ed8](https://github.com/denvermullets/collectable-moments/commit/fe68ed833389c4237167745112ca26d7cf95b278))
+
 ## [1.0.1](https://github.com/denvermullets/collectable-moments/compare/v1.0.0...v1.0.1) (2022-12-20)
 
 
