@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/denvermullets/collectable-moments/compare/v1.0.0...v1.0.1) (2022-12-20)
+
+
+### Bug Fixes
+
+* **netlify:** add netlify toml for deploy ([6ffe882](https://github.com/denvermullets/collectable-moments/commit/6ffe8824a30865d5326daf7db216e3312e24166b))
+
 # 1.0.0 (2022-11-28)
 
 
