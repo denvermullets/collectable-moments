@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import "./App.css";
 import { createUseStyles } from "react-jss";
 import AppContainer from "./components/AppContainer";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LandingPage from "./views/LandingPage";
 import SignUp from "./views/Auth";
 import { CurrentUserContext, UserContext } from "./providers/UserContext";
+import AuthWrapper from "./components/AuthWrapper";
 
 const useStyles = createUseStyles(() => ({
   root: {
@@ -23,8 +24,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<LandingPage />}
-            // element={currentUser ? <LandingPage /> : <Navigate to="/sign-up" />}
+            element={
+              <AuthWrapper currentUser={currentUser}>
+                <LandingPage />
+              </AuthWrapper>
+            }
           />
           <Route path="/sign-up" element={<SignUp signIn={false} />} />
           <Route path="/sign-in" element={<SignUp signIn={true} />} />
