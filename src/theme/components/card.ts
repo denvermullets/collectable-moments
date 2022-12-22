@@ -7,6 +7,9 @@ export const cardStyles: StyleConfig = {
       container: {
         borderWidth: "1px",
         borderColor: mode("peachMoment.50", "darkMode.750")(props),
+        // _hover: {
+        //   cursor: "hand",
+        // },
       },
     }),
   },
