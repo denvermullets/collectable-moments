@@ -35,6 +35,7 @@ export const CurrentUserProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log("hitx");
     if (cookies?.collectable_moments && !currentUser) {
       console.log("currentUser context hit");
       loadUserInfo();
