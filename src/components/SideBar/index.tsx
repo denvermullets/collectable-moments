@@ -3,6 +3,7 @@ import { Box, Flex, useColorModeValue, Text, Stack } from "@chakra-ui/react";
 import UserInfo from "./UserInfo";
 import { Moment } from "../../models/Moment";
 import CalendarMonth from "../CalendarMonth";
+import SideBarLinks from "./SideBarLinks";
 
 type SidebarProps = {
   moments: Moment[];
@@ -36,10 +37,12 @@ const Sidebar: React.FC<SidebarProps> = ({ moments }) => {
         boxShadow={shadow}
       >
         <Flex direction="column" height="100%" pt="25px" borderRadius="30px">
-          <Text>Brand</Text>
+          <Text fontSize="xl" fontWeight="bold" marginLeft={4}>
+            Collectable Moments
+          </Text>
           <Stack direction="column" mb="auto" mt="8px">
             <Box ps="20px" pe={{ md: "16px", "2xl": "1px" }}>
-              <Text>links</Text>
+              <SideBarLinks />
             </Box>
           </Stack>
           <Box mt="60px" borderRadius="30px">
