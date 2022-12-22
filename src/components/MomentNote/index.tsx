@@ -35,13 +35,10 @@ const MomentNote: React.FC<MomentNoteProps> = ({
       marginBottom={2}
       background={useColorModeValue("white", "darkMode.800")}
       variant="altCard"
+      _hover={{ cursor: "pointer" }}
+      onClick={() => setSelectedMoment(moment)}
     >
-      <Flex
-        align="center"
-        p="6px"
-        borderRadius="20px"
-        // bg={current ? miniCardCurrent : miniCardNonCurrent}
-      >
+      <Flex align="center" p="6px" borderRadius="20px">
         <Flex
           me="20px"
           direction="column"
@@ -50,59 +47,29 @@ const MomentNote: React.FC<MomentNoteProps> = ({
           w="80px"
           h="80px"
           borderRadius="15px"
-          // bg={current ? boxCurrent : boxNonCurrent}
           bg={boxNonCurrent}
         >
-          <Text
-            mb="2px"
-            fontSize="md"
-            fontWeight="500"
-            // color={current ? textSecondaryCurrent : textSecondaryNonCurrent}
-          >
+          <Text mb="2px" fontSize="md" fontWeight="500">
             {day.toUpperCase()}
           </Text>
-          <Text
-            lineHeight="100%"
-            fontSize="34px"
-            fontWeight="700"
-            // color={current ? textCurrent : textNonCurrent}
-          >
+          <Text lineHeight="100%" fontSize="34px" fontWeight="700">
             {dateNum}
           </Text>
         </Flex>
         <Box>
-          <Text
-            fontSize="lg"
-            fontWeight="700"
-            // color={current ? textCurrent : textNonCurrent}
-          >
-            {moment.description}
+          <Text fontSize="lg" fontWeight="700" marginBottom={1}>
+            {moment.description.length > 64
+              ? moment.description.slice(0, 60) + "..."
+              : moment.description}
           </Text>
           <Flex align="center">
-            <Icon
-              me="8px"
-              as={BsCalendar3}
-              w="16px"
-              h="16px"
-              // color={current ? textSecondaryCurrent : textSecondaryNonCurrent}
-            />
-            <Text
-              fontSize="sm"
-              fontWeight="500"
-              // color={current ? textSecondaryCurrent : textSecondaryNonCurrent}
-            >
+            <Icon me="8px" as={BsCalendar3} w="16px" h="16px" />
+            <Text fontSize="sm" fontWeight="500">
               {fullDate}
             </Text>
           </Flex>
         </Box>
-        <Button
-          mt="auto"
-          variant="no-hover"
-          bg="transparent"
-          p="0px"
-          ms="auto"
-          onClick={() => setSelectedMoment(moment)}
-        >
+        <Button mt="auto" variant="no-hover" bg="transparent" p="0px" ms="auto">
           <Icon
             as={BsArrowRight}
             color={useColorModeValue("purplehMoment.700", "darkMode.500")}
