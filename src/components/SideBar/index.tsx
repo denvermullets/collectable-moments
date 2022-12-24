@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ moments }) => {
           <Box mt="60px" borderRadius="30px">
             <CalendarMonth moments={moments} />
           </Box>
-          <UserInfo />
+          <UserInfo momentCount={moments.length} />
         </Flex>
       </Box>
     </Box>

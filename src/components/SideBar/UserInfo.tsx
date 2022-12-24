@@ -2,7 +2,11 @@ import React, { useContext } from "react";
 import { Avatar, Box, Flex, GridItem, Text } from "@chakra-ui/react";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
 
-const UserInfo: React.FC = () => {
+type UserInfoProps = {
+  momentCount: number;
+};
+
+const UserInfo: React.FC<UserInfoProps> = ({ momentCount }) => {
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
   return (
     <Flex marginTop={8} marginBottom={16} marginLeft={8}>
@@ -21,7 +25,7 @@ const UserInfo: React.FC = () => {
             {currentUser ? `@${currentUser.username}` : null}
           </Text>
           <Text fontSize="sm">
-            {currentUser ? `${"Moments shared"}` : null}
+            {currentUser ? `${momentCount + " Moments shared"}` : null}
           </Text>
         </Box>
       </GridItem>
