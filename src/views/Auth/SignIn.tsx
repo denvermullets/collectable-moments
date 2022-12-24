@@ -40,8 +40,9 @@ const SignIn: React.FC = () => {
     email: false,
     password: false,
   });
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser, setRememberUser } = useContext(UserContext);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
 
@@ -79,6 +80,7 @@ const SignIn: React.FC = () => {
         console.error("Unable to login");
       }
 
+      setRememberUser(rememberMe);
       setCurrentUser(userInfo.data.user);
       navigate("/");
     } catch (error) {
@@ -177,12 +179,20 @@ const SignIn: React.FC = () => {
             </FormErrorMessage>
           )}
           <Flex justifyContent="space-between" align="center" mb="24px">
-            <FormControl display="flex" alignItems="center">
-              <Checkbox id="remember-login" me="10px" />
+            <FormControl display="flex" alignItems="start">
+              <Checkbox
+                name="rememberLogin"
+                id="remember-login"
+                me="10px"
+                mt="3px"
+                isChecked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
               <FormLabel
                 htmlFor="remember-login"
                 mb="0"
                 fontWeight="normal"
+                // color={textColor}
                 fontSize="sm"
               >
                 Keep me logged in

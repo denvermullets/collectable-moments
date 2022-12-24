@@ -37,7 +37,6 @@ const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const { setCurrentUser } = useContext<CurrentUserContext>(UserContext);
   const [showPassword, setShowPassword] = useState(false);
-  // const [termsConditions, setTermsConditions] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormDataTypes>({
     firstName: "",
     lastName: "",
@@ -213,40 +212,6 @@ const SignUp: React.FC = () => {
               Invalid password
             </FormErrorMessage>
           )}
-          {/* <Flex justifyContent="space-between" align="center" mb="24px">
-            <FormControl display="flex" alignItems="start">
-              <Checkbox
-                name="rememberLogin"
-                id="remember-login"
-                me="10px"
-                mt="3px"
-                isChecked={termsConditions}
-                onChange={() => setTermsConditions(!termsConditions)}
-              />
-              <FormLabel
-                htmlFor="remember-login"
-                mb="0"
-                fontWeight="normal"
-                // color={textColor}
-                fontSize="sm"
-              >
-                By creating an account means you agree to the{" "}
-                <Link
-                  href="https://collectablemoments.com/terms-of-service"
-                  fontWeight="500"
-                >
-                  Terms and Conditions,
-                </Link>{" "}
-                and our{" "}
-                <Link
-                  href="https://collectablemoments.com/privacy-policy"
-                  fontWeight="500"
-                >
-                  Privacy Policy
-                </Link>
-              </FormLabel>
-            </FormControl>
-          </Flex> */}
           <Button
             variant="brand"
             fontSize="14px"
