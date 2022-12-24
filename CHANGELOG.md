@@ -1,3 +1,19 @@
+# [1.2.0](https://github.com/denvermullets/collectable-moments/compare/v1.1.0...v1.2.0) (2022-12-24)
+
+
+### Bug Fixes
+
+* **auth:** validate forms, enter register, cm-46, cm-54 ([#16](https://github.com/denvermullets/collectable-moments/issues/16)) ([86a34b5](https://github.com/denvermullets/collectable-moments/commit/86a34b506ad4917787c23ce3acf0506e04a3761d))
+* **login:** actualmemory for logins, cm-43 ([#17](https://github.com/denvermullets/collectable-moments/issues/17)) ([e34d395](https://github.com/denvermullets/collectable-moments/commit/e34d395acc123dbf8352c3d66288ced05b61729d))
+* **momentNote:** set minW/minH, cm-49 ([#15](https://github.com/denvermullets/collectable-moments/issues/15)) ([b3aae04](https://github.com/denvermullets/collectable-moments/commit/b3aae0458653df9f02b72dff535261bbf72b7a36))
+* **userInfo:** add moments count to info, cm-52 ([#19](https://github.com/denvermullets/collectable-moments/issues/19)) ([4bd460a](https://github.com/denvermullets/collectable-moments/commit/4bd460a52962968e6b6cbf911f66419ba35ee952))
+* **userInfo:** use default avatar, fix formatting, cm-27, cm-45 ([#14](https://github.com/denvermullets/collectable-moments/issues/14)) ([85132dd](https://github.com/denvermullets/collectable-moments/commit/85132dd03913a5f43fcb8a170e7d19f43229cbaa))
+
+
+### Features
+
+* **moment:** restrict moments to 1 a day, cm-17 ([#18](https://github.com/denvermullets/collectable-moments/issues/18)) ([cc503f6](https://github.com/denvermullets/collectable-moments/commit/cc503f6acd811d8eacc0e47f65d2e4e881e5b8f8))
+
 # [1.1.0](https://github.com/denvermullets/collectable-moments/compare/v1.0.2...v1.1.0) (2022-12-22)
 
 
