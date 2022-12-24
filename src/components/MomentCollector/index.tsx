@@ -13,10 +13,12 @@ import { generateDate } from "../../util/helpers";
 
 type MomentCollectorProps = {
   setRefreshTable: (refresh: boolean) => void;
+  disabled: boolean;
 };
 
 const MomentCollector: React.FC<MomentCollectorProps> = ({
   setRefreshTable,
+  disabled,
 }) => {
   const [moment, setMoment] = useState<string>("");
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
@@ -72,6 +74,7 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
           fontWeight="500"
           ms="auto"
           onClick={handleSubmit}
+          disabled={disabled}
         >
           Save Moment
         </Button>
