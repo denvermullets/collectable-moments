@@ -13,12 +13,14 @@ export interface CurrentUserType {
 export interface CurrentUserContext {
   currentUser: CurrentUserType;
   setCurrentUser: (currentUser: CurrentUserType) => void;
+  setRememberUser: (rememberUser: boolean) => void;
 }
 
 export const UserContext = createContext<CurrentUserContext>(null);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<CurrentUserType>();
+  const [rememberUser, setRememberUser] = useState<boolean>(false);
   const [cookies, setCookie] = useCookies(["collectable_moments"]);
 
   const loadUserInfo = async () => {
@@ -35,7 +37,6 @@ export const CurrentUserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("hitx");
     if (cookies?.collectable_moments && !currentUser) {
       console.log("currentUser context hit");
       loadUserInfo();
@@ -43,20 +44,22 @@ export const CurrentUserProvider = ({ children }) => {
   }, [cookies]);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && rememberUser) {
       console.log("cookie set");
       setCookie("collectable_moments", currentUser, {
         path: "/",
         secure: true,
-        // i think a 4hr cookie is ok, probably not going to need more than that w/tokens exp
-        expires: new Date(Date.now() + 3600 * 1000 * 4),
+        // i think an 8hr cookie is ok, probably not going to need more than that w/tokens exp
+        expires: new Date(Date.now() + 3600 * 1000 * 8),
         sameSite: true,
       });
     }
-  }, [currentUser]);
+  }, [currentUser, rememberUser]);
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+    <UserContext.Provider
+      value={{ currentUser, setCurrentUser, setRememberUser }}
+    >
       {children}
     </UserContext.Provider>
   );

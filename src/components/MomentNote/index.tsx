@@ -44,8 +44,8 @@ const MomentNote: React.FC<MomentNoteProps> = ({
           direction="column"
           align="center"
           justify="center"
-          w="80px"
-          h="80px"
+          minW="80px"
+          minH="80px"
           borderRadius="15px"
           bg={boxNonCurrent}
         >

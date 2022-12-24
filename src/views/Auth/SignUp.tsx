@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
@@ -12,7 +11,7 @@ import {
   InputGroup,
   InputRightElement,
   Text,
-  Link,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -28,17 +27,27 @@ type FormDataTypes = {
   username: string;
 };
 
+type FormErrorTypes = {
+  email: boolean;
+  password: boolean;
+  username: boolean;
+};
+
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const { setCurrentUser } = useContext<CurrentUserContext>(UserContext);
   const [showPassword, setShowPassword] = useState(false);
-  const [termsConditions, setTermsConditions] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormDataTypes>({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     username: "",
+  });
+  const [formErrors, setFormErrors] = useState<FormErrorTypes>({
+    email: false,
+    password: false,
+    username: false,
   });
 
   const handleClick = () => setShowPassword(!showPassword);
@@ -47,7 +56,25 @@ const SignUp: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    setFormErrors({
+      email: !formData.email || formData.email === "",
+      password: !formData.password || formData.password === "",
+      username: !formData.username || formData.username === "",
+    });
+  };
+
   const handleSubmit = async () => {
+    validateForm();
+
+    if (
+      !formData.email ||
+      formData.email === "" ||
+      !formData.password ||
+      formData.password === ""
+    ) {
+      return;
+    }
     try {
       const createAccount = await axiosMoment(null).post("/v1/sign-up", {
         first_name: formData.firstName,
@@ -66,6 +93,11 @@ const SignUp: React.FC = () => {
       navigate("/");
     } catch (error) {
       console.error(error);
+      setFormErrors({
+        email: true,
+        password: true,
+        username: true,
+      });
     }
   };
 
@@ -101,7 +133,11 @@ const SignUp: React.FC = () => {
         me="auto"
         mb={{ base: "20px", md: "auto" }}
       >
-        <FormControl>
+        <FormControl
+          isInvalid={
+            formErrors.email || formErrors.password || formErrors.username
+          }
+        >
           <FormLabel ms="4px" fontSize="sm">
             Email*
           </FormLabel>
@@ -114,10 +150,14 @@ const SignUp: React.FC = () => {
             fontSize="sm"
             type="email"
             placeholder="email@gmail.com"
-            mb="24px"
             size="lg"
+            mb={formErrors.email ? 0 : 8}
             onChange={(e) => handleFormChange(e)}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           />
+          {formErrors.email && (
+            <FormErrorMessage marginBottom={6}>Invalid email</FormErrorMessage>
+          )}
           <FormLabel ms="4px" fontSize="sm">
             Username*
           </FormLabel>
@@ -130,14 +170,20 @@ const SignUp: React.FC = () => {
             fontSize="sm"
             type="text"
             placeholder="UserName"
-            mb="24px"
+            mb={formErrors.username ? 0 : 8}
             size="lg"
             onChange={(e) => handleFormChange(e)}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           />
+          {formErrors.username && (
+            <FormErrorMessage marginBottom={6}>
+              Invalid username
+            </FormErrorMessage>
+          )}
           <FormLabel ms="4px" fontSize="sm">
             Password*
           </FormLabel>
-          <InputGroup size="md">
+          <InputGroup size="md" marginBottom={4}>
             <Input
               variant="authInput"
               name="password"
@@ -147,10 +193,11 @@ const SignUp: React.FC = () => {
               fontSize="sm"
               ms={{ base: "0px", md: "4px" }}
               placeholder="Min. 8 characters"
-              mb="24px"
+              mb={formErrors.password ? 0 : 8}
               size="lg"
               type={showPassword ? "text" : "password"}
               onChange={(e) => handleFormChange(e)}
+              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             />
             <InputRightElement display="flex" alignItems="center" mt="4px">
               <Icon
@@ -160,40 +207,11 @@ const SignUp: React.FC = () => {
               />
             </InputRightElement>
           </InputGroup>
-          <Flex justifyContent="space-between" align="center" mb="24px">
-            <FormControl display="flex" alignItems="start">
-              <Checkbox
-                name="rememberLogin"
-                id="remember-login"
-                me="10px"
-                mt="3px"
-                isChecked={termsConditions}
-                onChange={() => setTermsConditions(!termsConditions)}
-              />
-              <FormLabel
-                htmlFor="remember-login"
-                mb="0"
-                fontWeight="normal"
-                // color={textColor}
-                fontSize="sm"
-              >
-                By creating an account means you agree to the{" "}
-                <Link
-                  href="https://collectablemoments.com/terms-of-service"
-                  fontWeight="500"
-                >
-                  Terms and Conditions,
-                </Link>{" "}
-                and our{" "}
-                <Link
-                  href="https://collectablemoments.com/privacy-policy"
-                  fontWeight="500"
-                >
-                  Privacy Policy
-                </Link>
-              </FormLabel>
-            </FormControl>
-          </Flex>
+          {formErrors.password && (
+            <FormErrorMessage marginBottom={6}>
+              Invalid password
+            </FormErrorMessage>
+          )}
           <Button
             variant="brand"
             fontSize="14px"

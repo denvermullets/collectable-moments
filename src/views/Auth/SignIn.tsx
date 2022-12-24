@@ -5,6 +5,7 @@ import {
   Checkbox,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Icon,
@@ -24,14 +25,24 @@ type FormDataTypes = {
   password: string;
 };
 
+type FormDataErrorsTypes = {
+  email: boolean;
+  password: boolean;
+};
+
 const SignIn: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormDataTypes>({
     email: "",
     password: "",
   });
+  const [formErrors, setFormErrors] = useState<FormDataErrorsTypes>({
+    email: false,
+    password: false,
+  });
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser, setRememberUser } = useContext(UserContext);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
 
@@ -40,7 +51,25 @@ const SignIn: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    setFormErrors({
+      email: !formData.email || formData.email === "",
+      password: !formData.password || formData.password === "",
+    });
+  };
+
   const handleSubmit = async () => {
+    validateForm();
+
+    if (
+      !formData.email ||
+      formData.email === "" ||
+      !formData.password ||
+      formData.password === ""
+    ) {
+      return;
+    }
+
     try {
       const userInfo = await axiosMoment(null).post(`/v1/sign-in`, {
         password: formData.password,
@@ -51,10 +80,15 @@ const SignIn: React.FC = () => {
         console.error("Unable to login");
       }
 
+      setRememberUser(rememberMe);
       setCurrentUser(userInfo.data.user);
       navigate("/");
     } catch (error) {
       console.error(error);
+      setFormErrors({
+        email: true,
+        password: true,
+      });
     }
   };
 
@@ -91,7 +125,7 @@ const SignIn: React.FC = () => {
         me="auto"
         mb={{ base: "20px", md: "auto" }}
       >
-        <FormControl>
+        <FormControl isInvalid={formErrors.email || formErrors.password}>
           <FormLabel ms="4px" fontSize="sm">
             Email*
           </FormLabel>
@@ -101,14 +135,18 @@ const SignIn: React.FC = () => {
             fontSize="sm"
             type="email"
             placeholder="email@gmail.com"
-            mb="24px"
+            mb={formErrors.email ? 0 : 8}
             fontWeight="500"
             size="lg"
             onChange={handleFormChange}
             value={formData.email}
             name="email"
             id="email"
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           />
+          {formErrors.email && (
+            <FormErrorMessage marginBottom={6}>Invalid email</FormErrorMessage>
+          )}
           <FormLabel ms="4px" fontSize="sm">
             Password*
           </FormLabel>
@@ -118,13 +156,14 @@ const SignIn: React.FC = () => {
               variant="authInput"
               fontSize="sm"
               placeholder="Min. 8 characters"
-              mb="24px"
+              mb={formErrors.password ? 0 : 8}
               size="lg"
               type={show ? "text" : "password"}
               onChange={handleFormChange}
               value={formData.password}
               name="password"
               id="password"
+              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             />
             <InputRightElement display="flex" alignItems="center" mt="4px">
               <Icon
@@ -134,13 +173,26 @@ const SignIn: React.FC = () => {
               />
             </InputRightElement>
           </InputGroup>
+          {formErrors.password && (
+            <FormErrorMessage marginBottom={6}>
+              Invalid password
+            </FormErrorMessage>
+          )}
           <Flex justifyContent="space-between" align="center" mb="24px">
-            <FormControl display="flex" alignItems="center">
-              <Checkbox id="remember-login" me="10px" />
+            <FormControl display="flex" alignItems="start">
+              <Checkbox
+                name="rememberLogin"
+                id="remember-login"
+                me="10px"
+                mt="3px"
+                isChecked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
               <FormLabel
                 htmlFor="remember-login"
                 mb="0"
                 fontWeight="normal"
+                // color={textColor}
                 fontSize="sm"
               >
                 Keep me logged in
@@ -159,6 +211,7 @@ const SignIn: React.FC = () => {
             w="100%"
             h="50"
             mb="24px"
+            type="submit"
             onClick={handleSubmit}
           >
             Sign In

@@ -21,8 +21,12 @@ const LandingPage: React.FC = () => {
   const [collectedMoments, setCollectedMoments] = useState<Moment[]>([]);
   const [refreshTable, setRefreshTable] = useState<boolean>(true);
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
-
   const [selectedMoment, setSelectedMoment] = useState<Moment>(null);
+
+  const today = dayjs(new Date()).format("YYYY-MM-DD");
+  const momentToday = collectedMoments.filter(
+    (moment: Moment) => moment.event_date.toString() === today
+  );
 
   useEffect(() => {
     const loadMoments = async () => {
@@ -94,7 +98,10 @@ const LandingPage: React.FC = () => {
         </Portal>
         <Box p={{ base: "20px", md: "30px" }} minH="100vh">
           <Box>
-            <MomentCollector setRefreshTable={setRefreshTable} />
+            <MomentCollector
+              setRefreshTable={setRefreshTable}
+              disabled={momentToday.length > 0}
+            />
 
             <Grid templateColumns="repeat(2, 1fr)" gap={4}>
               <Card
