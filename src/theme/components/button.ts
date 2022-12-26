@@ -6,6 +6,7 @@ export const buttonStyles: StyleConfig = {
     boxShadow: "45px 76px 113px 7px rgba(112, 144, 176, 0.08)",
     transition: ".25s all ease",
     boxSizing: "border-box",
+    cursor: "pointer",
     _focus: {
       boxShadow: "none",
     },

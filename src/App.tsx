@@ -7,6 +7,7 @@ import LandingPage from "./views/LandingPage";
 import SignUp from "./views/Auth";
 import { CurrentUserContext, UserContext } from "./providers/UserContext";
 import AuthWrapper from "./components/AuthWrapper";
+import HowItWorks from "./views/HowItWorks";
 
 const useStyles = createUseStyles(() => ({
   root: {
@@ -32,6 +33,7 @@ function App() {
           />
           <Route path="/sign-up" element={<SignUp signIn={false} />} />
           <Route path="/sign-in" element={<SignUp signIn={true} />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
         </Routes>
       </div>
     </AppContainer>
