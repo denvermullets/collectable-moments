@@ -9,7 +9,7 @@ type UserInfoProps = {
 const UserInfo: React.FC<UserInfoProps> = ({ momentCount }) => {
   const { currentUser } = useContext<CurrentUserContext>(UserContext);
   return (
-    <Flex marginTop={8} marginBottom={16} marginLeft={8}>
+    <Flex marginTop={8} marginBottom={8} marginLeft={8}>
       <GridItem>
         <Avatar
           h="48px"

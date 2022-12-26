@@ -14,7 +14,7 @@ const AuthWrapper: React.FC<AuthProps> = ({ children, currentUser }) => {
   return (
     <>
       {!currentUser && !cookies.collectable_moments ? (
-        <Navigate replace to="/sign-up" />
+        <Navigate replace to="/how-it-works" />
       ) : (
         children
       )}

@@ -18,7 +18,7 @@ import { MdHome } from "react-icons/md";
 
 const SideBarLinks: React.FC = () => {
   return (
-    <Accordion defaultIndex={0}>
+    <Accordion allowToggle>
       <AccordionItem border="none">
         <AccordionButton
           display="flex"
@@ -53,7 +53,7 @@ const SideBarLinks: React.FC = () => {
         </AccordionButton>
         <AccordionPanel py="0px">
           <List>
-            <NavLink to="/sign-in">
+            <NavLink to="/how-it-works">
               <ListItem ms="28px" display="flex" alignItems="center" mb="10px">
                 <Icon
                   w="6px"
@@ -62,19 +62,7 @@ const SideBarLinks: React.FC = () => {
                   as={FaCircle}
                   // color={activeIcon}
                 />
-                <Text fontSize="sm">Sign In</Text>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/sign-up">
-              <ListItem ms="28px" display="flex" alignItems="center" mb="10px">
-                <Icon
-                  w="6px"
-                  h="6px"
-                  me="8px"
-                  as={FaCircle}
-                  // color={activeIcon}
-                />
-                <Text fontSize="sm">Sign Up</Text>
+                <Text fontSize="sm">How it works</Text>
               </ListItem>
             </NavLink>
           </List>

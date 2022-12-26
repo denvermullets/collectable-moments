@@ -16,24 +16,32 @@ import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import { CurrentUserContext, UserContext } from "../../providers/UserContext";
+import { useCookies } from "react-cookie";
 
 const ProfileInfo = (props: { secondary: boolean }) => {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
   const navbarIcon = useColorModeValue("gray.400", "white");
-  const menuBg = useColorModeValue("white", "navy.800");
+  const menuBg = useColorModeValue("white", "darkMode.900");
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const textColorBrand = useColorModeValue("brand.700", "brand.400");
   const ethColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("#E6ECFA", "rgba(135, 140, 189, 0.3)");
-  const ethBg = useColorModeValue("secondaryGray.300", "navy.900");
-  const ethBox = useColorModeValue("white", "navy.800");
+  const ethBg = useColorModeValue("secondaryGray.300", "darkMode.900");
+  const ethBox = useColorModeValue("white", "darkMode.800");
   const shadow = useColorModeValue(
     "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
 
-  const { currentUser } = useContext<CurrentUserContext>(UserContext);
+  const { currentUser, setCurrentUser } =
+    useContext<CurrentUserContext>(UserContext);
+  const removeCookie = useCookies(["collectable_moments"])[2];
+
+  const handleLogout = () => {
+    removeCookie("collectable_moments", { path: "/" });
+    setCurrentUser(null);
+  };
 
   return (
     <Flex
@@ -92,7 +100,7 @@ const ProfileInfo = (props: { secondary: boolean }) => {
       </Flex>
       {/* <SidebarResponsive routes={routes} /> */}
       <Menu>
-        <MenuButton p="0px">
+        <MenuButton p="0px" disabled={true}>
           <Icon
             mt="6px"
             as={MdNotificationsNone}
@@ -151,7 +159,7 @@ const ProfileInfo = (props: { secondary: boolean }) => {
       </Menu>
 
       <Menu>
-        <MenuButton p="0px">
+        <MenuButton p="0px" disabled={true}>
           <Icon
             mt="6px"
             as={MdInfoOutline}
@@ -172,7 +180,7 @@ const ProfileInfo = (props: { secondary: boolean }) => {
           minW={{ base: "unset" }}
           maxW={{ base: "360px", md: "unset" }}
         >
-          <Text>information stuff goes here</Text>
+          {/* <Text>information stuff goes here</Text> */}
         </MenuList>
       </Menu>
 
@@ -200,7 +208,6 @@ const ProfileInfo = (props: { secondary: boolean }) => {
             _hover={{ cursor: "pointer" }}
             color="white"
             name={currentUser?.username}
-            bg="#11047A"
             size="sm"
             w="40px"
             h="40px"
@@ -230,21 +237,10 @@ const ProfileInfo = (props: { secondary: boolean }) => {
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">
-            <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
-              borderRadius="8px"
-              px="14px"
-            >
+            <MenuItem color="pink.400" borderRadius="8px" px="14px">
               <Text fontSize="sm">Profile Settings</Text>
             </MenuItem>
-            <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
-              color="red.400"
-              borderRadius="8px"
-              px="14px"
-            >
+            <MenuItem borderRadius="8px" onClick={() => handleLogout()}>
               <Text fontSize="sm">Log out</Text>
             </MenuItem>
           </Flex>
