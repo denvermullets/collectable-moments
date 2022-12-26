@@ -40,7 +40,7 @@ const SignIn: React.FC = () => {
     email: false,
     password: false,
   });
-  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [rememberMe, setRememberMe] = useState<boolean>(true);
 
   const { setCurrentUser, setRememberUser } = useContext(UserContext);
   const handleClick = () => setShow(!show);
