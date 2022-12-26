@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/denvermullets/collectable-moments/compare/v1.2.0...v1.3.0) (2022-12-26)
+
+
+### Features
+
+* **hero:** add hero page, update navlink, add logout, cm-59, cm-57 ([9c8ef19](https://github.com/denvermullets/collectable-moments/commit/9c8ef192db5a5965b438a4a02f3f8b29fc8d4847))
+
 # [1.2.0](https://github.com/denvermullets/collectable-moments/compare/v1.1.0...v1.2.0) (2022-12-24)
 
 
