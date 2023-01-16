@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/denvermullets/collectable-moments/compare/v1.3.0...v1.4.0) (2023-01-16)
+
+
+### Bug Fixes
+
+* **cypress:** update ci/cd ([#27](https://github.com/denvermullets/collectable-moments/issues/27)) ([72f6cf6](https://github.com/denvermullets/collectable-moments/commit/72f6cf668a3e9d50fd96e7b6468406a8e734325a))
+* **husky:** disable husky on ci/cd? ([e84f0bc](https://github.com/denvermullets/collectable-moments/commit/e84f0bc3baaa7c677ecaf8a712c42a39b561bc9e))
+
+
+### Features
+
+* **cypress:** add and configure cypress w/basic test, cm-50 ([#23](https://github.com/denvermullets/collectable-moments/issues/23)) ([273d074](https://github.com/denvermullets/collectable-moments/commit/273d0740dcc11f8c17bab2566a79ea698ba3b3cf))
+
 # [1.3.0](https://github.com/denvermullets/collectable-moments/compare/v1.2.0...v1.3.0) (2022-12-26)
 
 
