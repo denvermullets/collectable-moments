@@ -219,6 +219,7 @@ const SignUp: React.FC = () => {
             w="100%"
             h="50"
             mb="24px"
+            data-cy="create-account"
             onClick={handleSubmit}
           >
             Create my account
