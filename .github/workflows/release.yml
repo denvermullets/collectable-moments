@@ -40,4 +40,4 @@ jobs:
           github_token: ${{ secrets.GH_SEMANTIC }}
           source_ref: ${{ github.ref }}
           target_branch: "develop"
-          commit_message_template: "[Automated] Merged {source_ref} into target {target_branch} [skip release]"
+          commit_message_template: "[Automated] Merged {source_ref} into target {target_branch} [skip release] --no-verify"
