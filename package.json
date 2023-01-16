@@ -8,7 +8,7 @@
     "oldtest": "react-scripts test",
     "prepare": "husky install",
     "start": "react-scripts start",
-    "test": "yarn test:typescript && yarn test:eslint && yarn test:cypress",
+    "test": "yarn test:typescript && yarn test:eslint",
     "test:cypress": "./node_modules/.bin/cypress run",
     "test:eslint": "eslint .",
     "test:typescript": "tsc -p ./tsconfig.json --noEmit"
