@@ -66,6 +66,7 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
           placeholder="What was your favorite memory from today?"
           momentChange={setMoment}
           momentValue={moment}
+          data-cy="moment-input"
         />
         <Button
           variant="brand"
@@ -75,6 +76,7 @@ const MomentCollector: React.FC<MomentCollectorProps> = ({
           ms="auto"
           onClick={handleSubmit}
           disabled={disabled}
+          data-cy="moment-submit"
         >
           Save Moment
         </Button>

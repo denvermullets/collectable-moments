@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "removeComments": true,
     "lib": ["dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "."
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "build", "disc"]

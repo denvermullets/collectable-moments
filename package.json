@@ -8,7 +8,8 @@
     "oldtest": "react-scripts test",
     "prepare": "husky install",
     "start": "react-scripts start",
-    "test": "yarn test:typescript && yarn test:eslint",
+    "test": "yarn test:typescript && yarn test:eslint && yarn test:cypress",
+    "test:cypress": "./node_modules/.bin/cypress run",
     "test:eslint": "eslint .",
     "test:typescript": "tsc -p ./tsconfig.json --noEmit"
   },
@@ -21,10 +22,13 @@
     "@types/react-calendar": "^3.9.0",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
+    "cypress": "^12.3.0",
     "eslint": "^8.27.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
-    "husky": "^8.0.2"
+    "husky": "^8.0.2",
+    "msw": "^0.49.2"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.12",

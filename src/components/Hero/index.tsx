@@ -96,7 +96,12 @@ const Hero: React.FC = () => {
           }}
         >
           <NavLink to={currentUser ? "/" : "/sign-up"}>
-            <Button as="a" variant="brand" display="inline-flex">
+            <Button
+              as="a"
+              variant="brand"
+              display="inline-flex"
+              data-cy="get-started"
+            >
               Get Started
               <Icon boxSize={4} ml={1} viewBox="0 0 20 20" fill="currentColor">
                 <path
